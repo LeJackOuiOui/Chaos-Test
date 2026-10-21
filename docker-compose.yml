@@ -13,7 +13,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.10"
+          cpus: "0.20"
           memory: 64M
 
   api_backend:
@@ -24,8 +24,21 @@ services:
     # ports:
     #   - "5000:5000"
     deploy:
-      replicas: 3
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.20"
+          memory: 128M
+
+  logs-viewer:
+    image: amir20/dozzle:latest
+    container_name: dozzle-logs
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
       resources:
         limits:
           cpus: "0.10"
-          memory: 128M
+          memory: 64M
