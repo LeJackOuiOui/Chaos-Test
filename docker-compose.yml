@@ -3,40 +3,52 @@ version: "3.8"
 services:
   load-balancer:
     image: nginx:latest
-    container_name: nginx-balancer
+    container_name: nginx-balanceador
     ports:
       - "80:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - api_backend
+      - api-backend
     deploy:
       resources:
         limits:
-          cpus: "0.20"
+          cpus: "0.10"
           memory: 64M
 
-  api_backend:
+  api-backend:
     build: .
-    # container_name: api-limitada
     expose:
       - "5000"
-    # ports:
-    #   - "5000:5000"
-    deploy:
-      replicas: 2
-      resources:
-        limits:
-          cpus: "0.20"
-          memory: 128M
 
-  logs-viewer:
+    stop_grace_period: 15s
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'python -c ''import urllib.request; urllib.request.urlopen("http://0.0.0.0:5000/health")'' || exit 1',
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+
+    deploy:
+      replicas: 4
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+        failure_action: rollback
+
+  log-viewer:
     image: amir20/dozzle:latest
     container_name: dozzle-logs
     ports:
       - "8080:8080"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     deploy:
       resources:
         limits:

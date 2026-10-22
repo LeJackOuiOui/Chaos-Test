@@ -23,3 +23,7 @@ class Cliente(HttpUser):
     #     with self.client.get("/memoria_ram", catch_response=True) as response:
     #         if response.status_code == 502 or response.status_code == 504:
     #             response.failure("El contenedor murió o no respondió (OOM killed / Timeout)")
+
+    @task(1)
+    def revisar_version(self):
+        self.client.get("/version")
