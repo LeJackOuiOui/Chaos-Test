@@ -8,9 +8,9 @@ class Cliente(HttpUser):
     # def revisar_salud(self):
     #     self.client.get("/health")
 
-    @task(1)
-    def hacer_compra(self):
-        self.client.post("/comprar")
+    # @task(1)
+    # def hacer_compra(self):
+    #     self.client.post("/comprar")
 
     # @task(2)
     # def probar_error_aleatorio(self):
@@ -24,6 +24,10 @@ class Cliente(HttpUser):
     #         if response.status_code == 502 or response.status_code == 504:
     #             response.failure("El contenedor murió o no respondió (OOM killed / Timeout)")
 
+    # @task(1)
+    # def revisar_version(self):
+    #     self.client.get("/version")
+
     @task(1)
-    def revisar_version(self):
-        self.client.get("/version")
+    def aplicar_descuento(self):
+        self.client.post("/aplicar-descuento")

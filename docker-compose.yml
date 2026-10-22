@@ -21,18 +21,16 @@ services:
     expose:
       - "5000"
 
-    stop_grace_period: 15s
-
     healthcheck:
       test:
         [
           "CMD-SHELL",
           'python -c ''import urllib.request; urllib.request.urlopen("http://0.0.0.0:5000/health")'' || exit 1',
         ]
-      interval: 5s
+      interval: 10s
       timeout: 3s
       retries: 3
-      start_period: 10s
+      start_period: 15s
 
     deploy:
       replicas: 4
@@ -41,6 +39,10 @@ services:
         delay: 10s
         order: start-first
         failure_action: rollback
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: 256M
 
   log-viewer:
     image: amir20/dozzle:latest
