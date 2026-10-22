@@ -1,6 +1,6 @@
 # Actividades SLA (Acuerdo de Nivel de Servicio)
 
-Cantidad de actividades realizadas: 2
+Cantidad de actividades realizadas: 3
 
 Actividad 1 (15/10/2026)
 
