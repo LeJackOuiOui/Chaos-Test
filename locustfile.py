@@ -4,19 +4,19 @@ from locust import HttpUser,  between, task
 class Cliente(HttpUser):
     wait_time = between(1, 2)
 
-    # @task(3)
-    # def revisar_salud(self):
-    #     self.client.get("/health")
+    @task(3)
+    def revisar_salud(self):
+        self.client.get("/health")
 
-    # @task(1)
-    # def hacer_compra(self):
-    #     self.client.post("/comprar")
+    @task(1)
+    def hacer_compra(self):
+        self.client.post("/comprar")
 
-    # @task(2)
-    # def probar_error_aleatorio(self):
-    #     with self.client.get("/error_aleatorio", catch_response=True) as response:
-    #         if response.status_code == 500:
-    #             response.failure("Ocurrio un error 500 simulado por la API")
+    @task(2)
+    def probar_error_aleatorio(self):
+        with self.client.get("/error_aleatorio", catch_response=True) as response:
+            if response.status_code == 500:
+                response.failure("Ocurrio un error 500 simulado por la API")
 
     # @task(1)
     # def probar_fuga_ram(self):

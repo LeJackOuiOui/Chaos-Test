@@ -7,7 +7,7 @@ Este documento describe el proceso de despliegue de la API NeoChaos, configurada
 ## 2. Arquitectura del Sistema
 
 - **Proxy Inverso / Balanceador:** Nginx (Puerto 80)
-- **Backend:** Flask + Gunicorn ([Número] réplicas, Puerto interno 5000)
+- **Backend:** Flask + Gunicorn (4 réplicas, Puerto interno 5000)
 - **Observabilidad:** Dozzle (Puerto 8080)
 - **Pruebas de Carga:** Locust (Puerto 8089)
 
@@ -18,24 +18,30 @@ Antes de iniciar, asegúrese de tener instalado:
 - **Docker Engine** (v20.10 o superior)
 - **Docker Compose** (v2.0 o superior)
 - **Git**
-- Sistema Operativo: [Ej: Linux Ubuntu 22.04, Windows 11 con WSL2, etc.]
+- **Python** (v3.10 o superior)
 
 ## 4. Pasos de Instalación
 
 ### Paso 1: Clonar el repositorio
 
 ```bash
-git clone [URL_DEL_REPOSITORIO]
-cd [NOMBRE_DE_LA_CARPETA]
+git clone https://github.com/LeJackOuiOui/NeoChaos.git
+cd NeoChaos
 ```
 
-### Paso 2: Configuración de Variables de Entorno (Si aplica)
+### Paso 2: Crear, activar y configurar el entorno virtual
 
-Copie el archivo de ejemplo y configure las variables necesarias:
+Si vas a ejecutar y realizar pruebas de carga de manera local:
 
 ```bash
-cp .env.example .env
-# Edite el archivo .env con su editor de texto (nano, vim, etc.)
+python3 -m venv .venv
+source venv\Scripts\Activate.ps1
+```
+
+Tras esto, instale las siguientes dependencias:
+
+```bash
+pip install flask locust
 ```
 
 ### Paso 3: Despliegue de la Infraestructura
