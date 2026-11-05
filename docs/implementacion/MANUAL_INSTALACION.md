@@ -35,7 +35,7 @@ Si vas a ejecutar y realizar pruebas de carga de manera local:
 
 ```bash
 python3 -m venv .venv
-source venv\Scripts\Activate.ps1
+source .venv\Scripts\Activate.ps1
 ```
 
 Tras esto, instale las siguientes dependencias:
