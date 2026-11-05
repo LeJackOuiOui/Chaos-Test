@@ -52,6 +52,12 @@ Levante todos los servicios en segundo plano:
 docker compose up --build -d
 ```
 
+Y en una consola aparte, ejecute el siguiente comando:
+
+```bash
+locust
+```
+
 ## 5. Verificación de Despliegue (Smoke Tests)
 
 Ejecute los siguientes comandos para confirmar que el sistema está operativo:
