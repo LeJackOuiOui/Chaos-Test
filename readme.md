@@ -1,6 +1,6 @@
 # Actividades SLA (Acuerdo de Nivel de Servicio)
 
-Cantidad de actividades realizadas: 3
+Cantidad de actividades realizadas: 4
 
 Actividad 1 (15/10/2026)
 
@@ -14,3 +14,7 @@ Actividad 2 (21/10/2026)
 Actividad 3 (22/10/2026)
 
 - Colapsos y bucles de reinicio de replicas (`docs/colapso_bucle`)
+
+Actividad 4 (4/11/2026)
+
+- Documentación de implementación e instalación del proyecto (`docs/implementacion`)
